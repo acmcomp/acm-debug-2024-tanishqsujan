@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Profiles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <video id="background" style="display: none;" muted playsinline loop>
+        <source src="{{ url_for('static', filename='background.png') }}" type="video/mp4">
+    </video>
+    <div style="text-align: center; margin-top: 20px;">
+        {% set profile_user = user | enforce_single %}
+        <h2>Welcome, {{profile_user[1]}}</h2>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <h2>About Us</h2>
+        <p>Welcome to our website! We provide the best profiles for you to explore. Stay tuned for more updates.</p>
+    </div>
+
+    <p style="text-align: center;"><a href="{{ url_for('index') }}">Go back to home</a></p>
+    <div style="text-align: center;">
+        <button id="profile-trends-btn" style="margin: 0 auto; font-size: 24px; padding: 15px 30px;">View trending profiles</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <h2>Contact Us</h2>
+        <p>Email: richard@profile-rollers.com</p>
+        <p>Phone: +123 456 7890</p>
+    </div>
+
+    <script>
+        const background = document.getElementById('background');
+        const playButton = document.getElementById('profile-trends-btn');
+
+        // Attempt autoplay initially
+        background.play().catch((error) => {
+            console.log('Autoplay failed. Waiting for user interaction.');
+            playButton.style.display = 'block';
+        });
+
+        playButton.addEventListener('click', () => {
+            background.style.display = 'block';
+            console.log(background);
+            background.play();
+            playButton.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

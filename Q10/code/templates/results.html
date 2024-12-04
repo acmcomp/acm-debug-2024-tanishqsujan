@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} Heavy Computation Benchmark
+
+{% block content %}
+    <h1>Benchmark Results</h1>
+        <p><strong>User Name :</strong> {{ a }} </p>
+        <p><strong>User Name ASCII Encoding :</strong> {{ ascii }} </p>
+        <p><strong>Machine :</strong> {{ b }}</p>
+        <p><strong>Test Size :</strong> {{ z }}</p>
+        <p><strong>Test Iters :</strong> {{ x }}</p>
+        <p><strong>Num Batches :</strong> {{ r }}</p>
+        <p><strong>Time Taken (s) :</strong> {{ p }}</p>
+    <a href="/">Go Back</a>
+
+{% endblock %}

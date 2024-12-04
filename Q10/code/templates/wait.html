@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %} Processing Stats {% endblock %}
+
+{% block content %}
+
+
+<div class="col-6">
+    <div class="progress">
+      <div id="queue-progress" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="{{ number_of_patients }}">Queue: 0</div>
+    </div>
+    <div class="progress mt-2">
+      <div id="failed-progress" class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="{{ number_of_patients }}">Failed: 0</div>
+    </div>
+    <div class="progress mt-2">
+        <div id="success-progress" class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="{{ number_of_patients }}">Success: 0</div>
+      </div>
+  </div>
+
+<script>
+    function fetchQueueStats() {
+      fetch('/queue_stats')
+        .then(response => response.json())
+        .then(data => {
+          const maxVal = data.queue_length + data.started + data.successful_jobs + data.failed_jobs;
+
+        var x = (data.started + data.queue_length) - (data.failed_jobs + data.successful_jobs);
+
+        // Update the queue progress bar
+        const queueProgress = document.getElementById('queue-progress');
+        const queuePercentage = (x / maxVal) * 100;
+        queueProgress.style.width = `${queuePercentage}%`;
+        queueProgress.setAttribute('aria-valuenow', data.queue_length);
+        queueProgress.textContent = `Queue: ${data.queue_length}`;
+
+        // Update the failed jobs progress bar
+        const failedProgress = document.getElementById('failed-progress');
+        const failedPercentage = (data.failed_jobs / maxVal) * 100;
+        failedProgress.style.width = `${failedPercentage}%`;
+        failedProgress.setAttribute('aria-valuenow', data.failed_jobs);
+        failedProgress.textContent = `Failed: ${data.failed_jobs}`;
+
+        // Update the successful jobs progress bar
+        const successProgress = document.getElementById('success-progress');
+        const successPercentage = (data.successful_jobs / maxVal) * 100;
+        successProgress.style.width = `${successPercentage}%`;
+        successProgress.setAttribute('aria-valuenow', data.successful_jobs);
+        successProgress.textContent = `Success: ${data.successful_jobs}`;
+
+        console.log(data.successful_jobs, maxVal)
+        if ((data.started == 0) && (data.queue_length == 0)) {
+            blacklist(5000).then(() => {
+              // Redirect to the main page or update UI as needed
+              window.location.href = '/results';
+            })
+        }
+        
+        });
+    }
+  
+    document.addEventListener('DOMContentLoaded', function() {
+      // Fetch queue stats immediately on page load
+      fetchQueueStats();
+  
+      // Set up periodic fetch every 5 seconds
+      setInterval(fetchQueueStats, 5000);
+    });
+
+    function blacklist (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+</script>
+
+{% endblock %}

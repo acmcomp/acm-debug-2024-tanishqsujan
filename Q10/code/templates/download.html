@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} TABLE {% endblock %}
+
+{% block content %}
+
+    <div class="container my-4">
+        <h1 class="text-center">Leaderboard</h1>
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    {% for c in k %}
+                    <th>{{ c }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in dict_r %}
+                <tr>
+                    {% for c in t %}
+                    <td>{{ row[c] }}</td>
+                    {% endfor %}
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
