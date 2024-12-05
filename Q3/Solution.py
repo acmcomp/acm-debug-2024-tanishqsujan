@@ -1,8 +1,6 @@
-from flask import Flask, request
-
+from flask import Flask, request, render_template_string
 app = Flask(__name__)
-
-HTML_TEMPLATE = """
+form_template = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,18 +18,15 @@ HTML_TEMPLATE = """
 </body>
 </html>
 """
-
-
-@app.route("/submit", methods=["GET"])
-def submit():
-    data = request.form["person_name"]
-    return f"Wassgud, {data}"
-
-
-@app.route("/", methods=["GET"])
+@app.route('/')
 def index():
-    return HTML_TEMPLATE
+    return render_template_string(form_template)
 
+@app.route('/submit', methods=['POST'])
+def submit():
+    data = request.form.get('person_name', 'Guest')  
+    return f"Wassgud, {data}!"
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
+
