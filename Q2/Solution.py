@@ -1,6 +1,5 @@
 from typing import Dict
 
-
 def load_services() -> Dict[str, str]:
     services = {
         "compute": "Cloud computing service for running virtual machines",
@@ -12,13 +11,13 @@ def load_services() -> Dict[str, str]:
     return dict(sorted(services.items()))
 
 
-def get_service_description(service_name):
+def get_service_description(service_name: str) -> str:
     services_map = load_services()
-    sorted_keys = list(services_map.keys())
-    index = sorted_keys.index(service_name)
-    mapped_key = sorted_keys[(index + len(sorted_keys)) % len(service_name)]
-    return services_map[mapped_key]
+    # Fetch the description directly
+    return services_map.get(service_name, "Service not found")
 
 
-services = get_service_description("network")
-print(services)
+# Example usage
+service_description = get_service_description("network")
+print(service_description)
+
