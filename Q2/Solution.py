@@ -13,11 +13,8 @@ def load_services() -> Dict[str, str]:
 
 def get_service_description(service_name: str) -> str:
     services_map = load_services()
-    # Fetch the description directly
     return services_map.get(service_name, "Service not found")
 
-
-# Example usage
 service_description = get_service_description("network")
 print(service_description)
 
