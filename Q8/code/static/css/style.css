@@ -40,7 +40,7 @@ body {
 }
 .section {
   min-height: 100vh;
-  padding-top: 80px; /* Adjusted for fixed header */
+  padding-top: 80px; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +50,7 @@ body {
   max-width: 600px;
 }
 .red-section {
-  background-image: url('static/images/lake.jpg'); /* Fixed path */
+  background-image: url('static/images/lake.jpg'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -113,7 +113,7 @@ body {
 .carousel-control-next-icon {
   background-color: #ffffff;
   border-radius: 50%;
-  width: 2rem; /* Adjusted size */
+  width: 2rem; 
   height: 2rem;
 }
 .comment-form {
