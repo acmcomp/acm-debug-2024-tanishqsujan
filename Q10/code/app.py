@@ -9,8 +9,15 @@ from flask_session import Session
 from redis import Redis
 
 app = Flask(__name__)
-REDIS_PORT = 6379
-redis_conn = Redis(host='localhost', port=REDIS_PORT)
+REDIS_PORT = 11025
+
+redis_conn = Redis(
+        host='redis-11025.c322.us-east-1-2.ec2.redns.redis-cloud.com',
+        port=REDIS_PORT,
+        decode_responses=True,
+        username="default",
+        password="610n8i64nVyWtVFkk8dZb3RelvbU09hd",
+    )
 SAVE_FILENAME = "benckmark_results.csv"
 app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SESSION_TYPE'] = 'filesystem'

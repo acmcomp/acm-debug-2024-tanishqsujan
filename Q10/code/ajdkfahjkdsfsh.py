@@ -14,7 +14,15 @@ from flask import (
 from rq import Retry, Callback
 
 def init_app___(app):
-    app.redis = Redis(host='localhost', port=6369)
+
+    app.redis = Redis(
+        host='redis-11025.c322.us-east-1-2.ec2.redns.redis-cloud.com',
+        port=11025,
+        decode_responses=True,
+        username="default",
+        password="610n8i64nVyWtVFkk8dZb3RelvbU09hd",
+    )
+    #Redis(host='localhost', port=6369)
     app.task_queue = rq_dashboard.Queue('task_xyz',
                                     connection=app.redis,
                                     default_timeout=10000000)
