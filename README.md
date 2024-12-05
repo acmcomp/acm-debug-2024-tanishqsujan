@@ -11,6 +11,9 @@
 - **Access Link:** https://classroom.github.com/a/1H0rTryL
 - **Type:** On-Campus Event
 
+## Impossible Question Link
+- **Link:** https://drive.google.com/file/d/1GQhJMcjI6aS0XG2Wy5CWlzelF8jYRtz2/view?usp=sharing
+
 ## Structure
 - 10 debugging questions across full-stack development
 - Tech stack includes Flask, HTML, CSS, JavaScript
