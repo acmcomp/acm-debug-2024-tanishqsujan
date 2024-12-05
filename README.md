@@ -8,7 +8,7 @@
 - **Date:** December 5, 2024
 - **Platform:** GitHub Classroom
 - **Duration:** 1 hour
-- **Access Link:** https://classroom.github.com/a/1H0rTryL
+- **Access Link:** https://classroom.github.com/a/Cg8TIn8u
 - **Type:** On-Campus Event
 
 ## Impossible Question Link
